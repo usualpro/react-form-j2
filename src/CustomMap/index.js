@@ -3,11 +3,11 @@ import './leafletConfig';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export const CustomMap = props => {
-    const { allCountries } = props;
+    const { allCountries, onCountryClick } = props;
     const ListMarkers = () => allCountries.map(
         (country, index) => {
             return (country.latlng[0])
-                ? <Marker key={index} position={country.latlng}>
+                ? <Marker onclick={() => onCountryClick(country)} key={index} position={country.latlng}>
                     <Popup>
                         {country.name}
                     </Popup>
