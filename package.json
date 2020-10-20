@@ -1,0 +1,22 @@
+{
+  "name": "react-form-j2",
+  "version": "1.0.0",
+  "description": "Basic usage of vercel with github",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel ./public/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usualpro/react-form-j2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/usualpro/react-form-j2/issues"
+  },
+  "homepage": "https://github.com/usualpro/react-form-j2#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
