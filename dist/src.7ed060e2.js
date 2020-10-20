@@ -47713,11 +47713,10 @@ var CustomMap = function CustomMap(props) {
 
   var ListMarkers = function ListMarkers() {
     return allCountries.map(function (country, index) {
-      console.log(country.latlng[0]);
-      return /*#__PURE__*/_react.default.createElement(_reactLeaflet.Marker, {
+      return country.latlng[0] ? /*#__PURE__*/_react.default.createElement(_reactLeaflet.Marker, {
         key: index,
-        position: [0, 0]
-      }, /*#__PURE__*/_react.default.createElement(_reactLeaflet.Popup, null, "A pretty CSS3 popup. ", /*#__PURE__*/_react.default.createElement("br", null), " Easily customizable."));
+        position: country.latlng
+      }, /*#__PURE__*/_react.default.createElement(_reactLeaflet.Popup, null, "A pretty CSS3 popup. ", /*#__PURE__*/_react.default.createElement("br", null), " Easily customizable.")) : null;
     });
   };
 
@@ -47728,14 +47727,9 @@ var CustomMap = function CustomMap(props) {
     maxZoom: 5,
     minZoom: 1
   }, /*#__PURE__*/_react.default.createElement(_reactLeaflet.TileLayer, {
-    attribution: "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors",
+    attribution: '&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-  }), allCountries.map(function (country, index) {
-    return country.latlng[0] ? /*#__PURE__*/_react.default.createElement(_reactLeaflet.Marker, {
-      key: index,
-      position: country.latlng
-    }, /*#__PURE__*/_react.default.createElement(_reactLeaflet.Popup, null, "A pretty CSS3 popup. ", /*#__PURE__*/_react.default.createElement("br", null), " Easily customizable.")) : null;
-  }));
+  }), /*#__PURE__*/_react.default.createElement(ListMarkers, null));
 };
 
 exports.CustomMap = CustomMap;
@@ -47865,7 +47859,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60130" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57300" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
