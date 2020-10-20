@@ -1,5 +1,8 @@
 import React from 'react';
 import { Services } from './http-services';
+import { CustomMap } from './CustomMap';
+
+
 export class Application extends React.Component {
     constructor(props) {
         super(props);
@@ -8,11 +11,7 @@ export class Application extends React.Component {
         };
     }
     render() {
-        const Children = () => this.props.children;
-        return <div>
-            {JSON.stringify(this.state)}
-            <Children />
-        </div>;
+        return <CustomMap allCountries={this.state.allCountries} />;
     }
     componentDidMount() {
         Services.getAllCountries().then((results) => {

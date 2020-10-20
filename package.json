@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/usualpro/react-form-j2#readme",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.27.0"
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "leaflet": "^1.7.1",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-leaflet": "^2.7.0"
   }
 }
