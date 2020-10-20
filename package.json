@@ -4,7 +4,8 @@
   "description": "Basic usage of vercel with github",
   "main": "index.js",
   "scripts": {
-    "start": "parcel ./public/index.html"
+    "start": "parcel ./public/index.html",
+    "build": "parcel build ./public/index.html -d build"
   },
   "repository": {
     "type": "git",
