@@ -5,6 +5,8 @@ import { Infos } from '../Infos';
 
 export const Home = props => <>
     <CustomMap onCountryClick={props.onCountryClick} allCountries={props.allCountries} />
-    <Link to='/todo'>Voir la liste des todos</Link>
+    <div className='m-2 text-center'>
+        <Link className='btn btn-primary' to='/todo'>Voir la liste des todos</Link>
+    </div>
     <Infos currentCountry={props.currentCountry} />
 </>;

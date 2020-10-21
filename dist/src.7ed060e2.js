@@ -51360,18 +51360,36 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Infos = function Infos(props) {
   var CountryInfoList = function CountryInfoList() {
     return props.currentCountry ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, Object.keys(props.currentCountry).map(function (name, index) {
-      return /*#__PURE__*/_react.default.createElement("div", {
-        key: index
+      return /*#__PURE__*/_react.default.createElement("li", {
+        key: index,
+        className: "list-group-item"
       }, name, ":", JSON.stringify(props.currentCountry[name]));
     })) : null;
   };
 
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "info-container"
-  }, /*#__PURE__*/_react.default.createElement(CountryInfoList, null));
+    className: "info-container container-fluid"
+  }, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, /*#__PURE__*/_react.default.createElement(CountryInfoList, null)));
 };
 
 exports.Infos = Infos;
+
+/*#__PURE__*/
+_react.default.createElement("ul", {
+  class: "list-group"
+}, /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Cras justo odio"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Dapibus ac facilisis in"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Morbi leo risus"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Porta ac consectetur ac"), /*#__PURE__*/_react.default.createElement("li", {
+  class: "list-group-item"
+}, "Vestibulum at eros"));
 },{"react":"../node_modules/react/index.js"}],"../src/pages/Home.js":[function(require,module,exports) {
 "use strict";
 
@@ -51394,9 +51412,12 @@ var Home = function Home(props) {
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_CustomMap.CustomMap, {
     onCountryClick: props.onCountryClick,
     allCountries: props.allCountries
-  }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "m-2 text-center"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
     to: "/todo"
-  }, "Voir la liste des todos"), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
+  }, "Voir la liste des todos")), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
     currentCountry: props.currentCountry
   }));
 };
