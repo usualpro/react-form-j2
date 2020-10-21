@@ -1,16 +1,41 @@
-body, html{
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-}
-.leaflet-container{
-    width: 100vw;
-    height: 50vh;
-}
-.info-container{
-    width: 100vw;
-    overflow: auto;
-    height: 50vh;
-    padding: 15px;
-}
-@import '../../node_modules/leaflet/dist/leaflet.css';
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+/*@import
+  'abstracts/variables',
+  'abstracts/functions',
+  'abstracts/mixins';*/
+
+// 2. Vendors
+@import
+'../../node_modules/bootstrap/scss/bootstrap',  
+'../../node_modules/leaflet/dist/leaflet.css';
+
+// 3. Base stuff
+@import
+  'base/base';
+
+// 4. Layout-related sections
+/*@import
+  'layout/header',
+  'layout/footer';
+*/
+// 5. Components
+@import
+  'components/info-container',
+  'components/leaflet-container';
+
+// 6. Page-specific styles
+/* @import
+  'pages/home';
+*/
+// 7. Themes
+/*@import
+  'themes/default';*/
+
+
+
+
+
+
+

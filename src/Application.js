@@ -12,7 +12,7 @@ export class Application extends React.Component {
             currentCountry: null
         };
     }
-    onCountryClick = country => {
+    onCountryClick = (country) => {
         this.setState({
             currentCountry: country
         });
