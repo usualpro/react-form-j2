@@ -24,8 +24,9 @@
   "dependencies": {
     "axios": "^0.20.0",
     "leaflet": "^1.7.1",
-    "react": "^16.8.0",
+    "react": ">=15",
     "react-dom": "^16.8.0",
-    "react-leaflet": "^2.7.0"
+    "react-leaflet": "^2.7.0",
+    "react-router-dom": "^5.2.0"
   }
 }
