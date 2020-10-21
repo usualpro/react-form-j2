@@ -57137,7 +57137,7 @@ var Persistent = function Persistent() {
       setToDo = _useState2[1];
 
   _db.default.todos.toArray().then(function (results) {
-    setToDo(results);
+    return setToDo(results);
   });
 
   return /*#__PURE__*/_react.default.createElement("div", {

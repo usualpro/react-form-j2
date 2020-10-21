@@ -4,9 +4,7 @@ import DataBase from '../data/db';
 
 export const Persistent = () => {
     const [todos, setToDo] = useState([]);
-    DataBase.todos.toArray().then(results => {
-        setToDo(results)
-    });
+    DataBase.todos.toArray().then(results => setToDo(results));
     return <div className='container-fluid'>
         <h1>Persistent data</h1>
         <>{JSON.stringify(todos)}</><br />
