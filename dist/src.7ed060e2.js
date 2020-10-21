@@ -51465,7 +51465,7 @@ var ToDo = function ToDo() {
       todoList = _useState2[0],
       updateToDoList = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       currentTodoDescription = _useState4[0],
       updateCurrentTodoDescription = _useState4[1];
@@ -51475,6 +51475,7 @@ var ToDo = function ToDo() {
 
     var newToDo = {
       created: Date.now(),
+      done: false,
       desc: currentTodoDescription
     };
     tabCopy.push(newToDo);
@@ -51485,11 +51486,36 @@ var ToDo = function ToDo() {
     updateCurrentTodoDescription(element.target.value);
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("input", {
+  var onToDoChange = function onToDoChange(domElement, toDo) {
+    var indexOfTodo = todoList.indexOf(toDo);
+
+    var tabCopy = _toConsumableArray(todoList);
+
+    tabCopy[indexOfTodo].done = domElement.target.checked;
+    updateToDoList(tabCopy);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/_react.default.createElement("input", {
     onChange: onTextInputChange,
     placeholder: "indiquez la description de votre tâche",
     type: "text"
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(todoList)), /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, todoList.map(function (todo, index) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: index,
+      className: "list-group-item"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      onChange: function onChange(element) {
+        return onToDoChange(element, todo);
+      },
+      className: "form-check-input mr-1",
+      type: "checkbox",
+      value: todo.done
+    }), todo.desc);
+  })), /*#__PURE__*/_react.default.createElement("button", {
     onClick: addTodo
   }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "btn btn-primary",
