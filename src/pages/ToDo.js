@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import DataBase from '../data/db';
 
 export const ToDo = () => {
   const [todoList, updateToDoList] = useState([]);
   const [currentTodoDescription, updateCurrentTodoDescription] = useState("");
-  DataBase.todos.toArray().then(results => updateToDoList(results));
+  useEffect(() => {
+    DataBase.todos.toArray().then(results => updateToDoList(results));
+  }, []);
   const addTodo = () => {
     const tabCopy = [...todoList];
     const newToDo = {
@@ -14,9 +16,7 @@ export const ToDo = () => {
       desc: currentTodoDescription,
     };
     tabCopy.push(newToDo);
-    DataBase.todos.add(newToDo).then(() => {
-      updateToDoList(tabCopy);
-    });
+    DataBase.todos.add(newToDo).then(() => updateToDoList(tabCopy));
   };
   const onTextInputChange = (element) => {
     updateCurrentTodoDescription(element.target.value);
@@ -26,12 +26,11 @@ export const ToDo = () => {
     const indexOfTodo = todoList.indexOf(toDo);
     const tabCopy = [...todoList];
     tabCopy[indexOfTodo].done = domElement.target.checked;
-    DataBase.todos.bulkPut(tabCopy).then(() => {
-      updateToDoList(tabCopy);
-    })
-
+    DataBase.todos.bulkPut(tabCopy).then(() => updateToDoList(tabCopy));
   };
+
   const todosFilteredArray = todoList.filter(todo => (todo.done === false));
+
   return (
     <div className="container">
       <input
@@ -40,7 +39,7 @@ export const ToDo = () => {
         placeholder={"indiquez la description de votre tâche"}
         type="text"
       />
-      <br />
+
       <form className="mb-3">
         <ul className="list-group">
           {todosFilteredArray.map((todo, index) => (

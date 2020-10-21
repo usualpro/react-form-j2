@@ -6,6 +6,9 @@ export class ToDoClassVersion extends React.Component {
         todoList: [],
         currentTodoDescription: ''
     }
+    componentDidMount() {
+
+    }
     onTextInputChange = element => {
         this.setState({
             currentTodoDescription: element.target.value
