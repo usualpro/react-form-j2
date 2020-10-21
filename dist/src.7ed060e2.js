@@ -51465,18 +51465,36 @@ var ToDo = function ToDo() {
       todoList = _useState2[0],
       updateToDoList = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentTodoDescription = _useState4[0],
+      updateCurrentTodoDescription = _useState4[1];
+
   var addTodo = function addTodo() {
     var tabCopy = _toConsumableArray(todoList);
 
-    tabCopy.push(1);
+    var newToDo = {
+      created: Date.now(),
+      desc: currentTodoDescription
+    };
+    tabCopy.push(newToDo);
     updateToDoList(tabCopy);
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, "Retour vers la home"), " ", /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, "liste des todos ", todoList.length, " ", JSON.stringify(todoList), " "), /*#__PURE__*/_react.default.createElement("button", {
+  var onTextInputChange = function onTextInputChange(element) {
+    updateCurrentTodoDescription(element.target.value);
+  };
+
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("input", {
+    onChange: onTextInputChange,
+    placeholder: "indiquez la description de votre tâche",
+    type: "text"
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
     onClick: addTodo
-  }, "Ajout d'une tache"));
+  }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/"
+  }, "Retour vers la home"));
 };
 
 exports.ToDo = ToDo;
