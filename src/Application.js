@@ -4,6 +4,7 @@ import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { ToDo } from './pages/ToDo';
 import { Persistent } from './pages/Persistent';
+import './data/db';
 
 export class Application extends React.Component {
     constructor(props) {
