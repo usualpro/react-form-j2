@@ -45,7 +45,12 @@ export const ToDo = () => {
           </li>
         ))}
       </ul>
-      <button onClick={addTodo}>Ajout d'une tache</button>
+      <button
+        disabled={currentTodoDescription.length == 0 ? true : false}
+        onClick={addTodo}
+      >
+        Ajout d'une tache
+      </button>
       <br />
       <Link className="btn btn-primary" to="/">
         Retour vers la home

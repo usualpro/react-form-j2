@@ -51516,6 +51516,7 @@ var ToDo = function ToDo() {
       value: todo.done
     }), todo.desc);
   })), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: currentTodoDescription.length == 0 ? true : false,
     onClick: addTodo
   }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "btn btn-primary",
