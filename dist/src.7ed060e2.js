@@ -51423,155 +51423,114 @@ var Home = function Home(props) {
 };
 
 exports.Home = Home;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../CustomMap":"../src/CustomMap/index.js","../Infos":"../src/Infos/index.js"}],"../src/pages/ToDoClassVersion.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../CustomMap":"../src/CustomMap/index.js","../Infos":"../src/Infos/index.js"}],"../src/pages/ToDo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ToDoClassVersion = void 0;
+exports.ToDo = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+var ToDo = function ToDo() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todoList = _useState2[0],
+      updateToDoList = _useState2[1];
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentTodoDescription = _useState4[0],
+      updateCurrentTodoDescription = _useState4[1];
 
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+  var addTodo = function addTodo() {
+    var tabCopy = _toConsumableArray(todoList);
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+    var newToDo = {
+      created: Date.now(),
+      done: false,
+      desc: currentTodoDescription
+    };
+    tabCopy.push(newToDo);
+    updateToDoList(tabCopy);
+  };
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+  var onTextInputChange = function onTextInputChange(element) {
+    updateCurrentTodoDescription(element.target.value);
+  };
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+  var onToDoChange = function onToDoChange(domElement, toDo) {
+    var indexOfTodo = todoList.indexOf(toDo);
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+    var tabCopy = _toConsumableArray(todoList);
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+    tabCopy[indexOfTodo].done = domElement.target.checked;
+    updateToDoList(tabCopy);
+  };
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    onChange: onTextInputChange,
+    placeholder: "indiquez la description de votre tâche",
+    type: "text"
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(todoList)), /*#__PURE__*/_react.default.createElement("form", {
+    className: "mb-3"
+  }, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, todoList.map(function (todo, index) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: index,
+      className: "list-group-item"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "form-check"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "visually-hidden"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      onChange: function onChange(element) {
+        return onToDoChange(element, todo);
+      },
+      className: "form-check-input mr-1",
+      type: "checkbox",
+      value: todo.done
+    }), todo.desc)));
+  }))), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: currentTodoDescription.length == 0 ? true : false,
+    onClick: addTodo
+  }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/"
+  }, "Retour vers la home"));
+};
 
-var ToDoClassVersion = /*#__PURE__*/function (_React$Component) {
-  _inherits(ToDoClassVersion, _React$Component);
-
-  var _super = _createSuper(ToDoClassVersion);
-
-  function ToDoClassVersion() {
-    var _this;
-
-    _classCallCheck(this, ToDoClassVersion);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      todoList: [],
-      currentTodoDescription: ''
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "onTextInputChange", function (element) {
-      _this.setState({
-        currentTodoDescription: element.target.value
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "addTodo", function () {
-      var tabCopy = _toConsumableArray(_this.state.todoList);
-
-      var newToDo = {
-        created: Date.now(),
-        done: false,
-        desc: _this.state.currentTodoDescription
-      };
-      tabCopy.push(newToDo);
-
-      _this.setState({
-        todoList: tabCopy
-      });
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "onToDoChange", function (domElement, toDo) {
-      var indexOfTodo = _this.state.todoList.indexOf(toDo);
-
-      var tabCopy = _toConsumableArray(_this.state.todoList);
-
-      tabCopy[indexOfTodo].done = domElement.target.checked;
-
-      _this.setState({
-        todoList: tabCopy
-      });
-    });
-
-    return _this;
-  }
-
-  _createClass(ToDoClassVersion, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return /*#__PURE__*/_react.default.createElement("div", {
-        className: "container"
-      }, /*#__PURE__*/_react.default.createElement("input", {
-        onChange: function onChange(element) {
-          return _this2.onTextInputChange(element);
-        },
-        placeholder: "indiquez la description de votre tâche",
-        type: "text"
-      }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(this.state.todoList)), /*#__PURE__*/_react.default.createElement("ul", {
-        className: "list-group"
-      }, this.state.todoList.map(function (todo, index) {
-        return /*#__PURE__*/_react.default.createElement("li", {
-          key: index,
-          className: "list-group-item"
-        }, /*#__PURE__*/_react.default.createElement("input", {
-          onChange: function onChange(element) {
-            return _this2.onToDoChange(element, todo);
-          },
-          className: "form-check-input mr-1",
-          type: "checkbox",
-          value: todo.done
-        }), todo.desc);
-      })), /*#__PURE__*/_react.default.createElement("button", {
-        disabled: this.state.currentTodoDescription.length == 0 ? true : false,
-        onClick: this.addTodo
-      }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        className: "btn btn-primary",
-        to: "/"
-      }, "Retour vers la home"));
-    }
-  }]);
-
-  return ToDoClassVersion;
-}(_react.default.Component);
-
-exports.ToDoClassVersion = ToDoClassVersion;
-;
+exports.ToDo = ToDo;
 },{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"../src/Application.js":[function(require,module,exports) {
 "use strict";
 
@@ -51588,7 +51547,7 @@ var _reactRouterDom = require("react-router-dom");
 
 var _Home = require("./pages/Home");
 
-var _ToDoClassVersion = require("./pages/ToDoClassVersion");
+var _ToDo = require("./pages/ToDo");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51653,7 +51612,7 @@ var Application = /*#__PURE__*/function (_React$Component) {
         currentCountry: this.state.currentCountry
       })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         render: function render(props) {
-          return /*#__PURE__*/_react.default.createElement(_ToDoClassVersion.ToDoClassVersion, props);
+          return /*#__PURE__*/_react.default.createElement(_ToDo.ToDo, props);
         },
         exact: true,
         path: "/todo"
@@ -51676,7 +51635,7 @@ var Application = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.Application = Application;
-},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/Home":"../src/pages/Home.js","./pages/ToDoClassVersion":"../src/pages/ToDoClassVersion.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/Home":"../src/pages/Home.js","./pages/ToDo":"../src/pages/ToDo.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

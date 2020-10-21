@@ -2,7 +2,7 @@ import React from 'react';
 import { Services } from './http-services';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
 import { Home } from './pages/Home';
-import { ToDoClassVersion } from './pages/ToDoClassVersion';
+import { ToDo } from './pages/ToDo';
 
 export class Application extends React.Component {
     constructor(props) {
@@ -26,7 +26,7 @@ export class Application extends React.Component {
                         allCountries={this.state.allCountries}
                         currentCountry={this.state.currentCountry} />
                 </Route>
-                <Route render={props => <ToDoClassVersion  {...props} />} exact path="/todo" />
+                <Route render={props => <ToDo  {...props} />} exact path="/todo" />
             </Switch>
         </BrowserRouter>
     }

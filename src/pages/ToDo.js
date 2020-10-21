@@ -32,19 +32,26 @@ export const ToDo = () => {
       />
       <br />
       <p>{JSON.stringify(todoList)}</p>
-      <ul className="list-group">
-        {todoList.map((todo, index) => (
-          <li key={index} className="list-group-item">
-            <input
-              onChange={(element) => onToDoChange(element, todo)}
-              className="form-check-input mr-1"
-              type="checkbox"
-              value={todo.done}
-            />
-            {todo.desc}
-          </li>
-        ))}
-      </ul>
+      <form className="mb-3">
+        <ul className="list-group">
+          {todoList.map((todo, index) => (
+            <li key={index} className="list-group-item">
+              <div className="form-check">
+                <label className="visually-hidden">
+                  <input
+                    onChange={(element) => onToDoChange(element, todo)}
+                    className="form-check-input mr-1"
+                    type="checkbox"
+                    value={todo.done}
+                  />
+                  {todo.desc}
+                </label>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </form>
+
       <button
         disabled={currentTodoDescription.length == 0 ? true : false}
         onClick={addTodo}
