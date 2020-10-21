@@ -5,9 +5,11 @@ import DataBase from '../data/db';
 export const ToDo = () => {
   const [todoList, updateToDoList] = useState([]);
   const [currentTodoDescription, updateCurrentTodoDescription] = useState("");
+  
   useEffect(() => {
     DataBase.todos.toArray().then(results => updateToDoList(results));
   }, []);
+
   const addTodo = () => {
     const tabCopy = [...todoList];
     const newToDo = {
