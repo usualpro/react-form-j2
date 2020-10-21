@@ -57035,6 +57035,10 @@ var ToDo = function ToDo() {
       currentTodoDescription = _useState4[0],
       updateCurrentTodoDescription = _useState4[1];
 
+  _db.default.todos.toArray().then(function (results) {
+    return updateToDoList(results);
+  });
+
   var addTodo = function addTodo() {
     var tabCopy = _toConsumableArray(todoList);
 
@@ -57044,9 +57048,10 @@ var ToDo = function ToDo() {
       desc: currentTodoDescription
     };
     tabCopy.push(newToDo);
-    updateToDoList(tabCopy);
 
-    _db.default.todos.add(newToDo);
+    _db.default.todos.add(newToDo).then(function () {
+      updateToDoList(tabCopy);
+    });
   };
 
   var onTextInputChange = function onTextInputChange(element) {
@@ -57059,20 +57064,27 @@ var ToDo = function ToDo() {
     var tabCopy = _toConsumableArray(todoList);
 
     tabCopy[indexOfTodo].done = domElement.target.checked;
-    updateToDoList(tabCopy);
+
+    _db.default.todos.bulkPut(tabCopy).then(function () {
+      updateToDoList(tabCopy);
+    });
   };
 
+  var todosFilteredArray = todoList.filter(function (todo) {
+    return todo.done === false;
+  });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
   }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "form-control",
     onChange: onTextInputChange,
     placeholder: "indiquez la description de votre tâche",
     type: "text"
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(todoList)), /*#__PURE__*/_react.default.createElement("form", {
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("form", {
     className: "mb-3"
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "list-group"
-  }, todoList.map(function (todo, index) {
+  }, todosFilteredArray.map(function (todo, index) {
     return /*#__PURE__*/_react.default.createElement("li", {
       key: index,
       className: "list-group-item"

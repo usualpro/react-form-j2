@@ -5,6 +5,7 @@ import DataBase from '../data/db';
 export const ToDo = () => {
   const [todoList, updateToDoList] = useState([]);
   const [currentTodoDescription, updateCurrentTodoDescription] = useState("");
+  DataBase.todos.toArray().then(results => updateToDoList(results));
   const addTodo = () => {
     const tabCopy = [...todoList];
     const newToDo = {
@@ -13,30 +14,36 @@ export const ToDo = () => {
       desc: currentTodoDescription,
     };
     tabCopy.push(newToDo);
-    updateToDoList(tabCopy);
-    DataBase.todos.add(newToDo);
+    DataBase.todos.add(newToDo).then(() => {
+      updateToDoList(tabCopy);
+    });
   };
   const onTextInputChange = (element) => {
     updateCurrentTodoDescription(element.target.value);
   };
+
   const onToDoChange = (domElement, toDo) => {
     const indexOfTodo = todoList.indexOf(toDo);
     const tabCopy = [...todoList];
     tabCopy[indexOfTodo].done = domElement.target.checked;
-    updateToDoList(tabCopy);
+    DataBase.todos.bulkPut(tabCopy).then(() => {
+      updateToDoList(tabCopy);
+    })
+
   };
+  const todosFilteredArray = todoList.filter(todo => (todo.done === false));
   return (
     <div className="container">
       <input
+        className="form-control"
         onChange={onTextInputChange}
         placeholder={"indiquez la description de votre tâche"}
         type="text"
       />
       <br />
-      <p>{JSON.stringify(todoList)}</p>
       <form className="mb-3">
         <ul className="list-group">
-          {todoList.map((todo, index) => (
+          {todosFilteredArray.map((todo, index) => (
             <li key={index} className="list-group-item">
               <div className="form-check">
                 <label className="visually-hidden">
