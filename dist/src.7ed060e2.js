@@ -51830,134 +51830,7 @@ var Home = function Home(props) {
 };
 
 exports.Home = Home;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../CustomMap":"../src/CustomMap/index.js","../Infos":"../src/Infos/index.js"}],"../src/pages/ToDo.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.ToDo = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var ToDo = function ToDo() {
-  var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      todoList = _useState2[0],
-      updateToDoList = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(""),
-      _useState4 = _slicedToArray(_useState3, 2),
-      currentTodoDescription = _useState4[0],
-      updateCurrentTodoDescription = _useState4[1];
-
-  var addTodo = function addTodo() {
-    var tabCopy = _toConsumableArray(todoList);
-
-    var newToDo = {
-      created: Date.now(),
-      done: false,
-      desc: currentTodoDescription
-    };
-    tabCopy.push(newToDo);
-    updateToDoList(tabCopy);
-  };
-
-  var onTextInputChange = function onTextInputChange(element) {
-    updateCurrentTodoDescription(element.target.value);
-  };
-
-  var onToDoChange = function onToDoChange(domElement, toDo) {
-    var indexOfTodo = todoList.indexOf(toDo);
-
-    var tabCopy = _toConsumableArray(todoList);
-
-    tabCopy[indexOfTodo].done = domElement.target.checked;
-    updateToDoList(tabCopy);
-  };
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "container"
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    onChange: onTextInputChange,
-    placeholder: "indiquez la description de votre tâche",
-    type: "text"
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(todoList)), /*#__PURE__*/_react.default.createElement("form", {
-    className: "mb-3"
-  }, /*#__PURE__*/_react.default.createElement("ul", {
-    className: "list-group"
-  }, todoList.map(function (todo, index) {
-    return /*#__PURE__*/_react.default.createElement("li", {
-      key: index,
-      className: "list-group-item"
-    }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "form-check"
-    }, /*#__PURE__*/_react.default.createElement("label", {
-      className: "visually-hidden"
-    }, /*#__PURE__*/_react.default.createElement("input", {
-      onChange: function onChange(element) {
-        return onToDoChange(element, todo);
-      },
-      className: "form-check-input mr-1",
-      type: "checkbox",
-      value: todo.done
-    }), todo.desc)));
-  }))), /*#__PURE__*/_react.default.createElement("button", {
-    disabled: currentTodoDescription.length == 0 ? true : false,
-    onClick: addTodo
-  }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    className: "btn btn-primary",
-    to: "/"
-  }, "Retour vers la home"));
-};
-
-exports.ToDo = ToDo;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js"}],"../src/pages/Persistent.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.Persistent = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Persistent = function Persistent() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "container-fluid"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "Persistent data"), "HERE THE TODO LIST");
-};
-
-exports.Persistent = Persistent;
-},{"react":"../node_modules/react/index.js"}],"../node_modules/dexie/dist/dexie.mjs":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../CustomMap":"../src/CustomMap/index.js","../Infos":"../src/Infos/index.js"}],"../node_modules/dexie/dist/dexie.mjs":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -57096,6 +56969,11 @@ exports.default = _default;
 },{}],"../src/data/db.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _dexie = _interopRequireDefault(require("dexie"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -57104,12 +56982,174 @@ var db = new _dexie.default('ToDoDatabase');
 db.version(1).stores({
   todos: '++id'
 });
-db.todos.add({
-  created: Date.now(),
-  done: false,
-  desc: 'East 13:th Street'
+var _default = db;
+exports.default = _default;
+},{"dexie":"../node_modules/dexie/dist/dexie.mjs"}],"../src/pages/ToDo.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-},{"dexie":"../node_modules/dexie/dist/dexie.mjs"}],"../src/Application.js":[function(require,module,exports) {
+exports.ToDo = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _db = _interopRequireDefault(require("../data/db"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var ToDo = function ToDo() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todoList = _useState2[0],
+      updateToDoList = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      currentTodoDescription = _useState4[0],
+      updateCurrentTodoDescription = _useState4[1];
+
+  var addTodo = function addTodo() {
+    var tabCopy = _toConsumableArray(todoList);
+
+    var newToDo = {
+      created: Date.now(),
+      done: false,
+      desc: currentTodoDescription
+    };
+    tabCopy.push(newToDo);
+    updateToDoList(tabCopy);
+
+    _db.default.todos.add(newToDo);
+  };
+
+  var onTextInputChange = function onTextInputChange(element) {
+    updateCurrentTodoDescription(element.target.value);
+  };
+
+  var onToDoChange = function onToDoChange(domElement, toDo) {
+    var indexOfTodo = todoList.indexOf(toDo);
+
+    var tabCopy = _toConsumableArray(todoList);
+
+    tabCopy[indexOfTodo].done = domElement.target.checked;
+    updateToDoList(tabCopy);
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    onChange: onTextInputChange,
+    placeholder: "indiquez la description de votre tâche",
+    type: "text"
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("p", null, JSON.stringify(todoList)), /*#__PURE__*/_react.default.createElement("form", {
+    className: "mb-3"
+  }, /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, todoList.map(function (todo, index) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      key: index,
+      className: "list-group-item"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "form-check"
+    }, /*#__PURE__*/_react.default.createElement("label", {
+      className: "visually-hidden"
+    }, /*#__PURE__*/_react.default.createElement("input", {
+      onChange: function onChange(element) {
+        return onToDoChange(element, todo);
+      },
+      className: "form-check-input mr-1",
+      type: "checkbox",
+      value: todo.done
+    }), todo.desc)));
+  }))), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: currentTodoDescription.length == 0 ? true : false,
+    onClick: addTodo
+  }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/"
+  }, "Retour vers la home"));
+};
+
+exports.ToDo = ToDo;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/pages/Persistent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Persistent = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _db = _interopRequireDefault(require("../data/db"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var Persistent = function Persistent() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todos = _useState2[0],
+      setToDo = _useState2[1];
+
+  _db.default.todos.toArray().then(function (results) {
+    setToDo(results);
+  });
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container-fluid"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Persistent data"), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, JSON.stringify(todos)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/todo"
+  }, "Retour vers la liste des choses \xE0 faire"));
+};
+
+exports.Persistent = Persistent;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/Application.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

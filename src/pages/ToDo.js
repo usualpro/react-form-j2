@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import DataBase from '../data/db';
 
 export const ToDo = () => {
   const [todoList, updateToDoList] = useState([]);
@@ -13,6 +14,7 @@ export const ToDo = () => {
     };
     tabCopy.push(newToDo);
     updateToDoList(tabCopy);
+    DataBase.todos.add(newToDo);
   };
   const onTextInputChange = (element) => {
     updateCurrentTodoDescription(element.target.value);
