@@ -63818,15 +63818,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-var List = (0, _mobxReact.observer)(function () {
+var List = function List() {
+  var ListItems = (0, _mobxReact.observer)(function () {
+    return _PostObservable.default.allPosts.map(function (e, i) {
+      return /*#__PURE__*/_react.default.createElement(_ListItem.ListItem, _extends({}, e, {
+        key: i
+      }));
+    });
+  });
   return /*#__PURE__*/_react.default.createElement("ul", {
     className: "list-group"
-  }, _PostObservable.default.allPosts.map(function (e, i) {
-    return /*#__PURE__*/_react.default.createElement(_ListItem.ListItem, _extends({}, e, {
-      key: i
-    }));
-  }));
-});
+  }, /*#__PURE__*/_react.default.createElement(ListItems, null));
+};
+
 exports.List = List;
 },{"react":"../node_modules/react/index.js","./ListItem":"../src/pages/Posts/List/ListItem.js","mobx-react":"../node_modules/mobx-react/dist/mobxreact.esm.js","../../../stores/PostObservable":"../src/stores/PostObservable.js"}],"../src/pages/Posts/index.js":[function(require,module,exports) {
 "use strict";

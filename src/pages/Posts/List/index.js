@@ -3,10 +3,9 @@ import { ListItem } from './ListItem';
 import { observer } from 'mobx-react';
 import PostObservable from '../../../stores/PostObservable';
 
-export const List = observer(() => {
+export const List = () => {
+    const ListItems = observer(() => PostObservable.allPosts.map((e, i) => <ListItem {...e} key={i} />));
     return <ul className="list-group">
-        {
-            PostObservable.allPosts.map((e, i) => <ListItem {...e} key={i} />)
-        }
+        <ListItems />
     </ul>
-});
+};
