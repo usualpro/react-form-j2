@@ -57025,7 +57025,8 @@ var ToDo = function ToDo() {
   var _useState3 = (0, _react.useState)(""),
       _useState4 = _slicedToArray(_useState3, 2),
       currentTodoDescription = _useState4[0],
-      updateCurrentTodoDescription = _useState4[1];
+      updateCurrentTodoDescription = _useState4[1]; //componentDidMount like
+
 
   (0, _react.useEffect)(function () {
     updateList();

@@ -5,7 +5,8 @@ import DataBase from '../data/db';
 export const ToDo = () => {
   const [todoList, updateToDoList] = useState([]);
   const [currentTodoDescription, updateCurrentTodoDescription] = useState("");
-
+  
+  //componentDidMount like
   useEffect(() => { updateList() }, []);
 
   const addTodo = () => {
@@ -25,7 +26,7 @@ export const ToDo = () => {
 
   const onToDoChange = (domElement, toDo) => {
     toDo.done = domElement.target.checked;
-    DataBase.todos.put(toDo).then(() => updateList())
+    DataBase.todos.put(toDo).then(() => updateList());
   };
 
   const todosFilteredArray = todoList.filter(todo => (todo.done === false));
