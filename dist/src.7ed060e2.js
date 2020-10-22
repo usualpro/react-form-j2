@@ -63846,8 +63846,6 @@ var _TextArea = require("./TextArea");
 
 var _List = require("./List");
 
-var _PostObservable = _interopRequireDefault(require("../../stores/PostObservable"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Posts = function Posts() {
@@ -63863,7 +63861,7 @@ var Posts = function Posts() {
 };
 
 exports.Posts = Posts;
-},{"react":"../node_modules/react/index.js","./TextArea":"../src/pages/Posts/TextArea.js","./List":"../src/pages/Posts/List/index.js","../../stores/PostObservable":"../src/stores/PostObservable.js"}],"../src/pages/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./TextArea":"../src/pages/Posts/TextArea.js","./List":"../src/pages/Posts/List/index.js"}],"../src/pages/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
