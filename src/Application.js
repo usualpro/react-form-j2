@@ -6,6 +6,7 @@ import { ToDo } from './pages/ToDo';
 import { Persistent } from './pages/Persistent';
 import './data/db';
 
+
 export class Application extends React.Component {
     constructor(props) {
         super(props);
