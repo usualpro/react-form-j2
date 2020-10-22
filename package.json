@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/usualpro/react-form-j2#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/plugin-syntax-class-properties": "^7.10.4",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.27.0"
   },
@@ -26,7 +29,9 @@
     "bootstrap": "^4.5.3",
     "dexie": "^3.0.2",
     "leaflet": "^1.7.1",
-    "react": ">=15",
+    "mobx": "^6.0.0",
+    "mobx-react": "^7.0.0",
+    "react": "^16.8.0 || 16.9.0-alpha.0",
     "react-dom": "^16.8.0",
     "react-leaflet": "^2.7.0",
     "react-router-dom": "^5.2.0"
