@@ -1,5 +1,5 @@
 import { Services } from '../http-services/posts_service';
-import { makeObservable, observable, computed } from 'mobx';
+import { makeObservable, observable, computed, action } from 'mobx';
 
 class PostObservable {
     posts = [];
@@ -10,10 +10,13 @@ class PostObservable {
         })
         this.listPost();
     }
+
+    setList = action(results => {
+        this.posts = results.data;
+    })
+
     listPost = () => {
-        Services.listAllPost().then(results => {
-            this.posts = results.data;
-        })
+        Services.listAllPost().then((results) => this.setList(results));
     }
     get allPosts() {
         return this.posts

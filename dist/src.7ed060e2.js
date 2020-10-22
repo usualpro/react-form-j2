@@ -62121,9 +62121,13 @@ var PostObservable = /*#__PURE__*/function () {
 
     _defineProperty(this, "posts", []);
 
+    _defineProperty(this, "setList", (0, _mobx.action)(function (results) {
+      _this.posts = results.data;
+    }));
+
     _defineProperty(this, "listPost", function () {
       _posts_service.Services.listAllPost().then(function (results) {
-        _this.posts = results.data;
+        return _this.setList(results);
       });
     });
 
@@ -63820,7 +63824,7 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 var List = function List() {
   var ListItems = (0, _mobxReact.observer)(function () {
-    return _PostObservable.default.allPosts.map(function (e, i) {
+    return _PostObservable.default.posts.map(function (e, i) {
       return /*#__PURE__*/_react.default.createElement(_ListItem.ListItem, _extends({}, e, {
         key: i
       }));
@@ -64059,7 +64063,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55379" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65177" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
