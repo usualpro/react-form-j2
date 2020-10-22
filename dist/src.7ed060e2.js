@@ -57004,14 +57004,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -57036,23 +57028,18 @@ var ToDo = function ToDo() {
       updateCurrentTodoDescription = _useState4[1];
 
   (0, _react.useEffect)(function () {
-    _db.default.todos.toArray().then(function (results) {
-      return updateToDoList(results);
-    });
+    updateList();
   }, []);
 
   var addTodo = function addTodo() {
-    var tabCopy = _toConsumableArray(todoList);
-
     var newToDo = {
       created: Date.now(),
       done: false,
       desc: currentTodoDescription
     };
-    tabCopy.push(newToDo);
 
     _db.default.todos.add(newToDo).then(function () {
-      return updateToDoList(tabCopy);
+      return updateList();
     });
   };
 
@@ -57060,15 +57047,17 @@ var ToDo = function ToDo() {
     updateCurrentTodoDescription(element.target.value);
   };
 
+  var updateList = function updateList() {
+    return _db.default.todos.toArray().then(function (results) {
+      return updateToDoList(results);
+    });
+  };
+
   var onToDoChange = function onToDoChange(domElement, toDo) {
-    var indexOfTodo = todoList.indexOf(toDo);
+    toDo.done = domElement.target.checked;
 
-    var tabCopy = _toConsumableArray(todoList);
-
-    tabCopy[indexOfTodo].done = domElement.target.checked;
-
-    _db.default.todos.bulkPut(tabCopy).then(function () {
-      return updateToDoList(tabCopy);
+    _db.default.todos.put(toDo).then(function () {
+      return updateList();
     });
   };
 
@@ -57077,12 +57066,19 @@ var ToDo = function ToDo() {
   });
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "container"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "input-group my-3"
   }, /*#__PURE__*/_react.default.createElement("input", {
-    className: "form-control",
     onChange: onTextInputChange,
-    placeholder: "indiquez la description de votre tâche",
-    type: "text"
-  }), /*#__PURE__*/_react.default.createElement("form", {
+    type: "text",
+    className: "form-control",
+    placeholder: "indiquez la description de votre t\xE2che"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    disabled: currentTodoDescription.length == 0 ? true : false,
+    onClick: addTodo,
+    className: "btn btn-outline-secondary",
+    type: "button"
+  }, "Ajout d'une tache")), /*#__PURE__*/_react.default.createElement("form", {
     className: "mb-3"
   }, /*#__PURE__*/_react.default.createElement("ul", {
     className: "list-group"
@@ -57102,10 +57098,7 @@ var ToDo = function ToDo() {
       type: "checkbox",
       value: todo.done
     }), todo.desc)));
-  }))), /*#__PURE__*/_react.default.createElement("button", {
-    disabled: currentTodoDescription.length == 0 ? true : false,
-    onClick: addTodo
-  }, "Ajout d'une tache"), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+  }))), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "btn btn-primary",
     to: "/"
   }, "Retour vers la home"));
