@@ -30568,7 +30568,7 @@ module.exports = require('./lib/axios');
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.instance = void 0;
+exports.postInstance = exports.instance = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -30579,6 +30579,12 @@ var instance = _axios.default.create({
 });
 
 exports.instance = instance;
+
+var postInstance = _axios.default.create({
+  baseURL: "https://effy-simple-api.herokuapp.com/"
+});
+
+exports.postInstance = postInstance;
 },{"axios":"../node_modules/axios/index.js"}],"../src/http-services/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -51820,11 +51826,20 @@ var Home = function Home(props) {
     onCountryClick: props.onCountryClick,
     allCountries: props.allCountries
   }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "m-2 text-center"
+    className: "container-fluid"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "row justify-content-center my-3"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "col text-center"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     className: "btn btn-primary",
     to: "/todo"
-  }, "Voir la liste des todos")), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
+  }, "Voir la liste des todos")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "col text-center"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/posts"
+  }, "Voir la liste des posts")))), /*#__PURE__*/_react.default.createElement(_Infos.Infos, {
     currentCountry: props.currentCountry
   }));
 };
@@ -56984,7 +56999,58 @@ db.version(1).stores({
 });
 var _default = db;
 exports.default = _default;
-},{"dexie":"../node_modules/dexie/dist/dexie.mjs"}],"../src/pages/ToDo.js":[function(require,module,exports) {
+},{"dexie":"../node_modules/dexie/dist/dexie.mjs"}],"../src/pages/Persistent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Persistent = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _db = _interopRequireDefault(require("../data/db"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var Persistent = function Persistent() {
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      todos = _useState2[0],
+      setToDo = _useState2[1];
+
+  _db.default.todos.toArray().then(function (results) {
+    return setToDo(results);
+  });
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container-fluid"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Persistent data"), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, JSON.stringify(todos)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "btn btn-primary",
+    to: "/todo"
+  }, "Retour vers la liste des choses \xE0 faire"));
+};
+
+exports.Persistent = Persistent;
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/pages/ToDo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57106,58 +57172,139 @@ var ToDo = function ToDo() {
 };
 
 exports.ToDo = ToDo;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/pages/Persistent.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/pages/Posts/TextArea.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Persistent = void 0;
+exports.TextArea = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _db = _interopRequireDefault(require("../data/db"));
+var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var Persistent = function Persistent() {
-  var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      todos = _useState2[0],
-      setToDo = _useState2[1];
-
-  _db.default.todos.toArray().then(function (results) {
-    return setToDo(results);
-  });
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "container-fluid"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "Persistent data"), /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, JSON.stringify(todos)), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    className: "btn btn-primary",
-    to: "/todo"
-  }, "Retour vers la liste des choses \xE0 faire"));
+var TextArea = function TextArea() {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("textarea", {
+    rows: "5",
+    className: "form-control form-group",
+    cols: "33",
+    defaultValue: "It was a dark and stormy night..."
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn btn-danger btn-block"
+  }, "Soumettre le post"));
 };
 
-exports.Persistent = Persistent;
-},{"react":"../node_modules/react/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../data/db":"../src/data/db.js"}],"../src/Application.js":[function(require,module,exports) {
+exports.TextArea = TextArea;
+},{"react":"../node_modules/react/index.js"}],"../src/pages/Posts/List/ListItem.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ListItem = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ListItem = function ListItem() {
+  return /*#__PURE__*/_react.default.createElement("li", {
+    className: "list-group-item active",
+    "aria-current": "true"
+  }, "Cras justo odio");
+};
+
+exports.ListItem = ListItem;
+},{"react":"../node_modules/react/index.js"}],"../src/pages/Posts/List/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.List = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ListItem = require("./ListItem");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var List = function List() {
+  return /*#__PURE__*/_react.default.createElement("ul", {
+    className: "list-group"
+  }, /*#__PURE__*/_react.default.createElement(_ListItem.ListItem, null));
+};
+
+exports.List = List;
+},{"react":"../node_modules/react/index.js","./ListItem":"../src/pages/Posts/List/ListItem.js"}],"../src/pages/Posts/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Posts = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _TextArea = require("./TextArea");
+
+var _List = require("./List");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Posts = function Posts() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "container-fluid"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/_react.default.createElement(_TextArea.TextArea, null)), /*#__PURE__*/_react.default.createElement("div", {
+    className: "col"
+  }, /*#__PURE__*/_react.default.createElement(_List.List, null))));
+};
+
+exports.Posts = Posts;
+},{"react":"../node_modules/react/index.js","./TextArea":"../src/pages/Posts/TextArea.js","./List":"../src/pages/Posts/List/index.js"}],"../src/pages/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Home", {
+  enumerable: true,
+  get: function () {
+    return _Home.Home;
+  }
+});
+Object.defineProperty(exports, "Persistent", {
+  enumerable: true,
+  get: function () {
+    return _Persistent.Persistent;
+  }
+});
+Object.defineProperty(exports, "ToDo", {
+  enumerable: true,
+  get: function () {
+    return _ToDo.ToDo;
+  }
+});
+Object.defineProperty(exports, "Posts", {
+  enumerable: true,
+  get: function () {
+    return _Posts.Posts;
+  }
+});
+
+var _Home = require("./Home");
+
+var _Persistent = require("./Persistent");
+
+var _ToDo = require("./ToDo");
+
+var _Posts = require("./Posts");
+},{"./Home":"../src/pages/Home.js","./Persistent":"../src/pages/Persistent.js","./ToDo":"../src/pages/ToDo.js","./Posts":"../src/pages/Posts/index.js"}],"../src/Application.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57171,11 +57318,7 @@ var _httpServices = require("./http-services");
 
 var _reactRouterDom = require("react-router-dom");
 
-var _Home = require("./pages/Home");
-
-var _ToDo = require("./pages/ToDo");
-
-var _Persistent = require("./pages/Persistent");
+var _pages = require("./pages/");
 
 require("./data/db");
 
@@ -57236,22 +57379,28 @@ var Application = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
         path: "/"
-      }, /*#__PURE__*/_react.default.createElement(_Home.Home, {
+      }, /*#__PURE__*/_react.default.createElement(_pages.Home, {
         onCountryClick: this.onCountryClick,
         allCountries: this.state.allCountries,
         currentCountry: this.state.currentCountry
       })), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         render: function render(props) {
-          return /*#__PURE__*/_react.default.createElement(_ToDo.ToDo, props);
+          return /*#__PURE__*/_react.default.createElement(_pages.ToDo, props);
         },
         exact: true,
         path: "/todo"
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         render: function render(props) {
-          return /*#__PURE__*/_react.default.createElement(_Persistent.Persistent, props);
+          return /*#__PURE__*/_react.default.createElement(_pages.Persistent, props);
         },
         exact: true,
         path: "/persistent"
+      }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+        render: function render(props) {
+          return /*#__PURE__*/_react.default.createElement(_pages.Posts, props);
+        },
+        exact: true,
+        path: "/posts"
       })));
     }
   }, {
@@ -57271,7 +57420,7 @@ var Application = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.Application = Application;
-},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/Home":"../src/pages/Home.js","./pages/ToDo":"../src/pages/ToDo.js","./pages/Persistent":"../src/pages/Persistent.js","./data/db":"../src/data/db.js"}],"../src/index.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./http-services":"../src/http-services/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./pages/":"../src/pages/index.js","./data/db":"../src/data/db.js"}],"../src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -57315,7 +57464,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59193" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61861" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
