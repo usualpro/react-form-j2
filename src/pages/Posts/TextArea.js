@@ -3,12 +3,8 @@ import { Services } from '../../http-services/posts_service';
 import PostObservable from "../../stores/PostObservable";
 
 export const TextArea = () => {
-  const textAreaRef = useRef(null)
-  const onButtonCLick = () => {
-    Services.addAPost(textAreaRef.current.value).then(() => {
-      PostObservable.listPost();
-    });
-  }
+  const textAreaRef = useRef(null);
+  const onButtonCLick = () => PostObservable.addAPost(textAreaRef.current.value);
   return <>
     <textarea
       ref={textAreaRef}

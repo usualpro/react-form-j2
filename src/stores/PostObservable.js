@@ -13,11 +13,19 @@ class PostObservable {
 
     setList = action(results => {
         this.posts = results.data;
-    })
+    });
 
+    addAPost = (postValue) => {
+        Services.addAPost(postValue).then(() => this.listPost());
+    };
+
+    addAComment = (content, post_id) => {
+        Services.addAComment(content, post_id).then(() => this.listPost());
+    }
     listPost = () => {
         Services.listAllPost().then((results) => this.setList(results));
-    }
+    };
+
     get allPosts() {
         return this.posts
     }

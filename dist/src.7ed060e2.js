@@ -56783,6 +56783,12 @@ var Services = {
     return _instance.postInstance.post('/posts', {
       content: content
     });
+  },
+  addAComment: function addAComment(content, post_id) {
+    return _instance.postInstance.post('/comments', {
+      content: content,
+      post_id: post_id
+    });
   }
 };
 exports.Services = Services;
@@ -62125,6 +62131,18 @@ var PostObservable = /*#__PURE__*/function () {
       _this.posts = results.data;
     }));
 
+    _defineProperty(this, "addAPost", function (postValue) {
+      _posts_service.Services.addAPost(postValue).then(function () {
+        return _this.listPost();
+      });
+    });
+
+    _defineProperty(this, "addAComment", function (content, post_id) {
+      _posts_service.Services.addAComment(content, post_id).then(function () {
+        return _this.listPost();
+      });
+    });
+
     _defineProperty(this, "listPost", function () {
       _posts_service.Services.listAllPost().then(function (results) {
         return _this.setList(results);
@@ -62175,9 +62193,7 @@ var TextArea = function TextArea() {
   var textAreaRef = (0, _react.useRef)(null);
 
   var onButtonCLick = function onButtonCLick() {
-    _posts_service.Services.addAPost(textAreaRef.current.value).then(function () {
-      _PostObservable.default.listPost();
-    });
+    return _PostObservable.default.addAPost(textAreaRef.current.value);
   };
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("textarea", {
@@ -62201,19 +62217,56 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ListItem = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _PostObservable = _interopRequireDefault(require("../../../stores/PostObservable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
 var ListItem = function ListItem(props) {
+  var textAreaRef = (0, _react.useRef)(null);
+
+  var Comments = function Comments() {
+    return /*#__PURE__*/_react.default.createElement("ul", {
+      className: "list-group"
+    }, props.comments.map(function (e, i) {
+      return /*#__PURE__*/_react.default.createElement("li", {
+        className: "list-group-item-secondary list-group-item",
+        key: i
+      }, e.content);
+    }));
+  };
+
+  var submitAComment = function submitAComment() {
+    var post_id = props.id;
+    var content = textAreaRef.current.value;
+
+    _PostObservable.default.addAComment(content, post_id);
+  };
+
   return /*#__PURE__*/_react.default.createElement("li", {
     className: "list-group-item ",
     "aria-current": "true"
-  }, props.content);
+  }, /*#__PURE__*/_react.default.createElement("h3", null, props.content), /*#__PURE__*/_react.default.createElement("textarea", {
+    ref: textAreaRef,
+    rows: "5",
+    className: "form-control form-group",
+    cols: "33",
+    defaultValue: "Ajouter un commentaire"
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "btn btn-warning mb-3",
+    onClick: function onClick() {
+      return submitAComment();
+    }
+  }, "Soumettre un commentaire"), /*#__PURE__*/_react.default.createElement(Comments, null));
 };
 
 exports.ListItem = ListItem;
-},{"react":"../node_modules/react/index.js"}],"../node_modules/mobx-react-lite/es/utils/assertEnvironment.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../../stores/PostObservable":"../src/stores/PostObservable.js"}],"../node_modules/mobx-react-lite/es/utils/assertEnvironment.js":[function(require,module,exports) {
 "use strict";
 
 var _mobx = require("mobx");
@@ -64063,7 +64116,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65177" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64411" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
