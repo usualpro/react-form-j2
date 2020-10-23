@@ -62198,8 +62198,6 @@ exports.TextArea = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _posts_service = require("../../http-services/posts_service");
-
 var _PostObservable = _interopRequireDefault(require("../../stores/PostObservable"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -62228,7 +62226,7 @@ var TextArea = function TextArea() {
 };
 
 exports.TextArea = TextArea;
-},{"react":"../node_modules/react/index.js","../../http-services/posts_service":"../src/http-services/posts_service.js","../../stores/PostObservable":"../src/stores/PostObservable.js"}],"../src/pages/Posts/List/ListItem.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../stores/PostObservable":"../src/stores/PostObservable.js"}],"../src/pages/Posts/List/ListItem.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -64073,7 +64071,7 @@ var Application = /*#__PURE__*/function (_React$Component) {
         path: "/persistent"
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         render: function render(props) {
-          return /*#__PURE__*/_react.default.createElement(_pages.Posts, props);
+          return /*#__PURE__*/_react.default.createElement(_pages.Posts, null);
         },
         exact: true,
         path: "/posts"
@@ -64140,7 +64138,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64411" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58370" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

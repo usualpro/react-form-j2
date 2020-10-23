@@ -39,7 +39,7 @@ class PostObservable {
     };
 
     get allPosts() {
-        return this.posts
+        return this.posts;
     }
 }
 export default new PostObservable();

@@ -28,7 +28,7 @@ export class Application extends React.Component {
                 </Route>
                 <Route render={props => <ToDo  {...props} />} exact path="/todo" />
                 <Route render={props => <Persistent  {...props} />} exact path="/persistent" />
-                <Route render={props => <Posts  {...props} />} exact path="/posts" />
+                <Route render={props => <Posts  />} exact path="/posts" />
             </Switch>
         </BrowserRouter>
     }

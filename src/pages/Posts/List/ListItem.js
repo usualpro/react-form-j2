@@ -30,5 +30,5 @@ export const ListItem = props => {
         />
         <button className='btn btn-warning mb-3' onClick={() => submitAComment()}>Soumettre un commentaire</button>
         <Comments />
-    </li>
+    </li>;
 };

@@ -1,5 +1,4 @@
-import React, { useRef } from "react";
-import { Services } from '../../http-services/posts_service';
+import React, { useRef } from 'react';
 import PostObservable from "../../stores/PostObservable";
 
 export const TextArea = () => {
