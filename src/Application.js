@@ -1,9 +1,7 @@
 import React from 'react';
 import { Services } from './http-services';
-import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { ToDo } from './pages/ToDo';
-import { Persistent } from './pages/Persistent';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Home, ToDo, Persistent, Posts } from './pages/';
 import './data/db';
 
 export class Application extends React.Component {
@@ -30,6 +28,7 @@ export class Application extends React.Component {
                 </Route>
                 <Route render={props => <ToDo  {...props} />} exact path="/todo" />
                 <Route render={props => <Persistent  {...props} />} exact path="/persistent" />
+                <Route render={props => <Posts  />} exact path="/posts" />
             </Switch>
         </BrowserRouter>
     }
