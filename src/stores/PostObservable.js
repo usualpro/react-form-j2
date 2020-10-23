@@ -21,7 +21,19 @@ class PostObservable {
 
     addAComment = (content, post_id) => {
         Services.addAComment(content, post_id).then(() => this.listPost());
+    };
+
+    deleteAPost = post_id => {
+        Services.getPostById(post_id).then(results => {
+            const arrayOfDeletePromises = results.data.comments.map((comment) => Services.delete('comments', comment.id));
+            Promise.all(arrayOfDeletePromises).then(() => {
+                Services.delete('posts', post_id).then(() => {
+                    this.listPost();
+                });
+            });
+        });
     }
+
     listPost = () => {
         Services.listAllPost().then((results) => this.setList(results));
     };

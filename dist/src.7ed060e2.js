@@ -56776,6 +56776,9 @@ exports.Services = void 0;
 var _instance = require("./instance");
 
 var Services = {
+  getPostById: function getPostById(id) {
+    return _instance.postInstance.get("/posts/".concat(id));
+  },
   listAllPost: function listAllPost() {
     return _instance.postInstance.get('/posts');
   },
@@ -56789,6 +56792,9 @@ var Services = {
       content: content,
       post_id: post_id
     });
+  },
+  delete: function _delete(subject, id) {
+    return _instance.postInstance.delete("/".concat(subject, "/").concat(id));
   }
 };
 exports.Services = Services;
@@ -62143,6 +62149,19 @@ var PostObservable = /*#__PURE__*/function () {
       });
     });
 
+    _defineProperty(this, "deleteAPost", function (post_id) {
+      _posts_service.Services.getPostById(post_id).then(function (results) {
+        var arrayOfDeletePromises = results.data.comments.map(function (comment) {
+          return _posts_service.Services.delete('comments', comment.id);
+        });
+        Promise.all(arrayOfDeletePromises).then(function () {
+          _posts_service.Services.delete('posts', post_id).then(function () {
+            _this.listPost();
+          });
+        });
+      });
+    });
+
     _defineProperty(this, "listPost", function () {
       _posts_service.Services.listAllPost().then(function (results) {
         return _this.setList(results);
@@ -62251,7 +62270,12 @@ var ListItem = function ListItem(props) {
   return /*#__PURE__*/_react.default.createElement("li", {
     className: "list-group-item ",
     "aria-current": "true"
-  }, /*#__PURE__*/_react.default.createElement("h3", null, props.content), /*#__PURE__*/_react.default.createElement("textarea", {
+  }, /*#__PURE__*/_react.default.createElement("h3", null, props.content, " ", /*#__PURE__*/_react.default.createElement("button", {
+    onClick: function onClick() {
+      return _PostObservable.default.deleteAPost(props.id);
+    },
+    className: "btn btn-sm btn-secondary"
+  }, "Supprimer le post")), /*#__PURE__*/_react.default.createElement("textarea", {
     ref: textAreaRef,
     rows: "5",
     className: "form-control form-group",

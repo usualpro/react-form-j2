@@ -20,7 +20,7 @@ export const ListItem = props => {
     }
 
     return <li className="list-group-item " aria-current="true">
-        <h3>{props.content}</h3>
+        <h3>{props.content} <button onClick={() => PostObservable.deleteAPost(props.id)} className='btn btn-sm btn-secondary'>Supprimer le post</button></h3>
         <textarea
             ref={textAreaRef}
             rows="5"
